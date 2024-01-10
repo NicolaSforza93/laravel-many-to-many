@@ -24,7 +24,8 @@ class StoreProjectRequest extends FormRequest
         return [
             'name_project' => 'required|max:200|string|unique:projects',
             'date_creation' => 'required|date',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'exists:technologies,id'
         ];
     }
 }

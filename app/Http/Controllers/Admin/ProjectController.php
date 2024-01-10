@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -27,8 +28,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::orderBy('name', 'ASC')->get();
+        $technologies = Technology::orderBy('name', 'ASC')->get();
 
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -39,8 +41,11 @@ class ProjectController extends Controller
         // $data = $request->all();
 
         $data = $request->validated();
-
         $new_project = Project::create($data);
+
+        if ($request->has('technologies')) {
+            $new_project->technologies()->attach($data['technologies']);
+        }
 
         return redirect()->route('admin.projects.index', $new_project->id);
     }
@@ -59,8 +64,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::orderBy('name', 'ASC')->get();
+        $technologies = Technology::orderBy('name', 'ASC')->get();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -73,12 +79,19 @@ class ProjectController extends Controller
         $request->validate([
             'name_project' => ['required', 'max:200', 'string', Rule::unique('projects')->ignore($project->id)],
             'date_creation' => 'required|date',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'exists:technologies,id'
         ]);
 
         $data = $request->all();
 
         $project->update($data);
+
+        if ($request->has('technologies')) {
+            $project->technologies()->sync($data['technologies']);
+        } else {
+            $project->technologies()->sync([]);
+        }
 
         return redirect()->route('admin.projects.index', $project->id);
     }
@@ -88,6 +101,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->technologies()->sync([]);
         $project->delete();
 
         return redirect()->route('admin.projects.index');

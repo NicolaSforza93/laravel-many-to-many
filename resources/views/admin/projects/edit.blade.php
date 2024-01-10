@@ -28,6 +28,16 @@
             </div>
 
             <div class="mb-3">
+                <p class="mb-0 text-uppercase">Seleziona le tecnologie:</p>
+                @foreach ($technologies as $technology)
+                    <div class="form-check form-check-inline">
+                        <input name="technologies[]" class="form-check-input" type="checkbox" id="technology-{{ $technology->id }}" value="{{ $technology->id }}" @checked( in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) )>
+                        <label class="form-check-label" for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+                    </div>
+                @endforeach                
+            </div>
+
+            <div class="mb-3">
                 <label for="basic-url" class="form-label text-uppercase">Data Creazione</label>
                 <input type="date" required class="form-control" name="date_creation" value="{{ old('date_creation', $project->date_creation) }}"">
             </div>

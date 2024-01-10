@@ -11,7 +11,7 @@
 
         <ul class="d-flex gap-3 ps-0">
             @foreach ($project->technologies as $technology)
-                <li class="badge text-bg-primary">{{ $technology->name }}</li>
+                <li class="badge text-bg-primary p-2 fw-medium">{{ $technology->name }}</li>
             @endforeach
         </ul>
         
