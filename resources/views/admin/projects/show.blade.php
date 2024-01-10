@@ -8,6 +8,13 @@
         @if ($project->type)
             <p class="text-decoration-underline">{{ $project->type->name }}</p>
         @endif
+
+        <ul class="d-flex gap-3 ps-0">
+            @foreach ($project->technologies as $technology)
+                <li class="badge text-bg-primary">{{ $technology->name }}</li>
+            @endforeach
+        </ul>
+        
         <p>{{ $project->date_creation }}</p>
         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta praesentium non, expedita sit veritatis perspiciatis iusto molestias ipsum blanditiis quia ipsam doloremque aperiam animi nemo! Impedit, necessitatibus praesentium! Nemo, quisquam voluptatum nisi quasi voluptas deleniti eius ea, nihil officiis error optio ut impedit tenetur. Quos, ducimus. At aliquid fuga molestias!</p>
     </div>
