@@ -62,6 +62,9 @@
                         @endif
                         @else
                         <a class="nav-link" href="{{ route('admin.projects.index') }}">{{__('Progetti')}}</a>
+                        <a class="nav-link" href="{{ route('admin.types.index') }}">{{__('Tipologie')}}</a>
+                        <a class="nav-link" href="{{ route('admin.technologies.index') }}">{{__('Tecnologie')}}</a>
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
