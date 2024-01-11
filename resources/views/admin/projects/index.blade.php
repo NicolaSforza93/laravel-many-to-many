@@ -63,7 +63,7 @@
                         </div>
                         <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-{{$project->id}}">Cancella</button
                     </td>
-                  </tr>
+                </tr>
                 @empty
                     <tr>
                         <td>Non ci sono Progetti</td>    
