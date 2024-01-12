@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ProjectController extends Controller
@@ -41,6 +42,13 @@ class ProjectController extends Controller
         // $data = $request->all();
 
         $data = $request->validated();
+
+        if ($request->hasFile('cover_image')) {
+            $img_path = Storage::put('images', $data['cover_image']);
+
+            $data['cover_image'] = $img_path;
+        }
+
         $new_project = Project::create($data);
 
         if ($request->has('technologies')) {
@@ -80,10 +88,22 @@ class ProjectController extends Controller
             'name_project' => ['required', 'max:200', 'string', Rule::unique('projects')->ignore($project->id)],
             'date_creation' => 'required|date',
             'type_id' => 'nullable|exists:types,id',
-            'technologies' => 'exists:technologies,id'
+            'technologies' => 'exists:technologies,id',
+            'cover_image' => 'nullable|file|max:2048|mimes:jpg,png'
         ]);
 
         $data = $request->all();
+
+        if ($request->hasFile('cover_image')) {
+            $img_path = Storage::put('images', $data['cover_image']);
+
+            $data['cover_image'] = $img_path;
+
+            // Elimino il file precedente se sto salvando una nuova immagine
+            if ($project->cover_image) {
+                Storage::delete($project->cover_image);
+            }
+        }
 
         $project->update($data);
 
@@ -93,7 +113,7 @@ class ProjectController extends Controller
             $project->technologies()->sync([]);
         }
 
-        return redirect()->route('admin.projects.index', $project->id);
+        return redirect()->route('admin.projects.show', $project->id);
     }
 
     /**

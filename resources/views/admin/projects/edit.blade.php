@@ -6,10 +6,8 @@
     <div class="container">
         <h1>Modifica Progetto</h1>
 
-        <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" class="p-3 w-50 m-auto">
-
+        <form action="{{ route('admin.projects.update', $project->id) }}" method="POST" class="p-3 w-50 m-auto" enctype="multipart/form-data">
             @csrf
-
             @method('PUT')
             
             <div class="mb-3">
@@ -18,7 +16,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="type_id" class="form-label">Tipologia</label>
+                <label for="type_id" class="form-label text-uppercase">Tipologia</label>
                 <select class="form-select" name="type_id" id="type_id" aria-label="Floating label select example">
                     <option value="">Seleziona una Tipologia</option>
                     @foreach ($types as $type)
@@ -35,6 +33,11 @@
                         <label class="form-check-label" for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
                     </div>
                 @endforeach                
+            </div>
+
+            <div class="mb-3">
+                <label for="cover_image" class="form-label text-uppercase">Immagine</label>
+                <input class="form-control" type="file" name="cover_image" id="cover_image">
             </div>
 
             <div class="mb-3">

@@ -6,7 +6,7 @@
     <div class="container">
         <h1>Nuovo Progetto</h1>
 
-        <form action="{{ route('admin.projects.store') }}" method="POST" class="p-3 w-50 m-auto">
+        <form action="{{ route('admin.projects.store') }}" method="POST" class="p-3 w-50 m-auto" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label text-uppercase">Nome Progetto</label>
@@ -24,13 +24,18 @@
             </div>
             
             <div class="mb-3">
-                <p class="mb-0 text-uppercase">Seleziona le tecnologie:</p>
+                <p class="mb-0 text-uppercase">Seleziona le tecnologie</p>
                 @foreach ($technologies as $technology)
                     <div class="form-check form-check-inline">
                         <input name="technologies[]" class="form-check-input" type="checkbox" id="technology-{{ $technology->id }}" value="{{ $technology->id }}" @checked( in_array($technology->id, old('technologies', [])) )>
                         <label class="form-check-label" for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
                     </div>
                 @endforeach                
+            </div>
+
+            <div class="mb-3">
+                <label for="cover_image" class="form-label text-uppercase">Immagine</label>
+                <input class="form-control" type="file" name="cover_image" id="cover_image">
             </div>
             
             <div class="mb-3">
