@@ -21,22 +21,27 @@ class ProjectSeeder extends Seeder
             [
                 "name_project" => "html-css-animation-filter",
                 "date_creation" => "2023-09-08",
+                "status" => "Completato",
             ],
             [
                 "name_project" => "html-css-boolando",
                 "date_creation" => "2023-09-06",
+                "status" => "Completato",
             ],
             [
                 "name_project" => "html-css-booleaner",
                 "date_creation" => "2023-08-28",
+                "status" => "Completato",
             ],
             [
                 "name_project" => "html-css-bootstrap-dashboard",
                 "date_creation" => "2023-09-27",
+                "status" => "Completato",
             ],
             [
                 "name_project" => "html-css-bootstrap-freelancer",
                 "date_creation" => "2023-09-25",
+                "status" => "Completato",
             ],
         ];
 
@@ -51,6 +56,7 @@ class ProjectSeeder extends Seeder
 
             $new_project->name_project = $project['name_project'];
             $new_project->date_creation = $project['date_creation'];
+            $new_project->status = $project['status'];
             $new_project->type_id = $faker->optional()->randomElement($typeIds);
 
             $new_project->save();

@@ -26,6 +26,16 @@
             </div>
 
             <div class="mb-3">
+                <label for="status" class="form-label text-uppercase">Stato</label>
+                <select class="form-select" name="status" id="status" aria-label="Default select example">
+                    <option>Tipologia</option>
+                    <option @selected(old('status', $project->status) === 'Completato') value="Completato">Completato</option>
+                    <option @selected(old('status', $project->status) === 'In corso') value="In corso">In corso</option>
+                    <option @selected(old('status', $project->status) === 'Non completato') value="Non completato">Non completato</option>
+                </select>
+            </div> 
+
+            <div class="mb-3">
                 <p class="mb-0 text-uppercase">Seleziona le tecnologie:</p>
                 @foreach ($technologies as $technology)
                     <div class="form-check form-check-inline">

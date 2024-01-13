@@ -11,6 +11,7 @@
                 <th scope="col">Nome Progetto</th>
                 <th scope="col">Tipologia</th>
                 <th scope="col">Data Creazione</th>
+                <th scope="col">Stato</th>
                 <th scope="col" colspan="2" class="text-end">
                     <button class="btn btn-success btn-sm">
                         <a href="{{ route('admin.projects.create') }}" class="text-white text-decoration-none">Nuovo</a>
@@ -31,6 +32,7 @@
                         {{-- {{ optional($project->type)->name }} --}}
                     </td>
                     <td>{{ $project->date_creation }}</td>
+                    <td>{{ $project->status }}</td>
                     <td class="text-end">
                         <button type="button" class="btn btn-primary btn-sm">
                             <a href="{{ route('admin.projects.edit', $project->id) }}" class="text-white text-decoration-none">Modifica</a>

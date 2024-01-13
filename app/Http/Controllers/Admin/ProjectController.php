@@ -87,6 +87,10 @@ class ProjectController extends Controller
         $request->validate([
             'name_project' => ['required', 'max:200', 'string', Rule::unique('projects')->ignore($project->id)],
             'date_creation' => 'required|date',
+            'status' => [
+                'required',
+                Rule::in(['Completato', 'In corso', 'Non completato'])
+            ],
             'type_id' => 'nullable|exists:types,id',
             'technologies' => 'exists:technologies,id',
             'cover_image' => 'nullable|file|max:2048|mimes:jpg,png'
