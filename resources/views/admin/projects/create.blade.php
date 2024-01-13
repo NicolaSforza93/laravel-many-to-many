@@ -26,7 +26,7 @@
             <div class="mb-3">
                 <label for="status" class="form-label text-uppercase">Stato</label>
                 <select class="form-select" name="status" id="status" aria-label="Default select example">
-                    <option>Tipologia</option>
+                    <option>Seleziona uno Stato</option>
                     <option @selected(old('status') === 'Completato') value="Completato">Completato</option>
                     <option @selected(old('status') === 'In corso') value="In corso">In corso</option>
                     <option @selected(old('status') === 'Non completato') value="Non completato">Non completato</option>

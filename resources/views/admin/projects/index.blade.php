@@ -3,7 +3,7 @@
 @section('content')
 
 <section>
-    <div class="container">
+    <div class="container py-4">
         <h1>Progetti realizzati</h1>
         <table class="table table-striped table-hover">
             <thead>
@@ -23,7 +23,7 @@
                 @forelse ($projects as $project)
                 <tr>
                     <td>
-                        <a href="{{ route('admin.projects.show', $project->id) }}">
+                        <a href="{{ route('admin.projects.show', $project->id) }}" class="text-decoration-none">
                             {{ $project->name_project }}
                         </a>
                     </td>

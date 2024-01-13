@@ -10,6 +10,7 @@
 
     <title>Laravel Boolfolio - Project Typology</title>
 
+    <script src="https://kit.fontawesome.com/40396ce4f1.js" crossorigin="anonymous"></script>;
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">

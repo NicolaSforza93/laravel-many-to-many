@@ -3,7 +3,7 @@
 @section('content')
 
 <section>
-    <div class="container p-4">
+    <div class="container py-4">
         <div class="row">
             @if ($project->cover_image)
             <div class="col order-1">
