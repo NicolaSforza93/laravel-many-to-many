@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTypeRequest;
 use App\Models\Type;
 use Illuminate\Http\Request;
 
@@ -28,9 +29,11 @@ class TypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTypeRequest $request)
     {
-        $data = $request->all();
+        // $data = $request->all();
+
+        $data = $request->validated();
 
         $new_type = Type::create($data);
 
@@ -58,6 +61,12 @@ class TypeController extends Controller
      */
     public function update(Request $request, Type $type)
     {
+        // $data = $request->all();
+
+        $request->validate([
+            'name' => 'required|max:100|string',
+        ]);
+
         $data = $request->all();
 
         $type->update($data);
