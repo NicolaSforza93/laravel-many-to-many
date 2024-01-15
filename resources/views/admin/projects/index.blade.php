@@ -6,7 +6,7 @@
     <div class="container py-4">
         <h1>Progetti realizzati</h1>
         <table class="table table-striped table-hover">
-            <thead>
+            <thead class="table-light">
               <tr>
                 <th scope="col">Nome Progetto</th>
                 <th scope="col">Tipologia</th>
